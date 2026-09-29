@@ -125,10 +125,7 @@ def get_adv_estimator_fn(name_or_enum):
 
 
 class AdaptiveKLController:
-    """
-    Adaptive KL controller described in the paper:
-    https://arxiv.org/pdf/1909.08593.pdf
-    """
+
 
     def __init__(self, init_kl_coef, target_kl, horizon):
         self.value = init_kl_coef
