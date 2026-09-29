@@ -221,7 +221,7 @@ if __name__ == "__main__":
 
             training_args.output_dir = str(Path(training_args.output_dir) / script_args.run_config)
     else:
-        # Extract model name from path (e.g., "Qwen3-1.7B" from "/home/siyanzhao/models/Qwen3-1.7B")
+        # Extract model name from path (e.g., "")
         model_name = model_args.model_name_or_path.split("/")[-1]
 
         # Create concise run name

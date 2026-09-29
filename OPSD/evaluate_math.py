@@ -579,7 +579,7 @@ def main():
     parser.add_argument(
         "--base_model",
         type=str,
-        default="/infra/old-home/home/siyanzhao/models/Qwen3-4B-Instruct-2507",
+        default="",
         help="Path to base model",
     )
     parser.add_argument(
