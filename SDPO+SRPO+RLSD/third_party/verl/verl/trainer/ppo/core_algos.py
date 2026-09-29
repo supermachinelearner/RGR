@@ -1008,10 +1008,10 @@ def compute_policy_loss_vanilla(
 
     assert config is not None
     assert not isinstance(config, AlgoConfig)
-    clip_ratio = config.clip_ratio  # Clipping parameter ε for standard PPO. See https://arxiv.org/abs/1707.06347.
+    clip_ratio = config.clip_ratio  
     clip_ratio_low = config.clip_ratio_low if config.clip_ratio_low is not None else clip_ratio
     clip_ratio_high = config.clip_ratio_high if config.clip_ratio_high is not None else clip_ratio
-    clip_ratio_c = config.get(  # Lower bound of the ratio for dual-clip PPO. See https://arxiv.org/pdf/1912.09729.
+    clip_ratio_c = config.get(  # Lower bound of the ratio for dual-clip PPO.
         "clip_ratio_c", 3.0
     )
 
@@ -1472,7 +1472,7 @@ def compute_policy_loss_geo_mean(
 
     assert config is not None
     assert not isinstance(config, AlgoConfig)
-    clip_ratio = config.clip_ratio  # Clipping parameter. See https://arxiv.org/abs/1707.06347.
+    clip_ratio = config.clip_ratio  # Clipping parameter. 
     clip_ratio_low = config.clip_ratio_low if config.clip_ratio_low is not None else clip_ratio
     clip_ratio_high = config.clip_ratio_high if config.clip_ratio_high is not None else clip_ratio
 
@@ -2563,33 +2563,7 @@ def compute_policy_loss_sdpo(old_log_prob, log_prob, advantages, response_mask,
 def compute_policy_loss_srpo(old_log_prob, log_prob, advantages, response_mask,
                              loss_agg_mode="token_mean", config=None,
                              rollout_is_weights=None, **kwargs):
-    """SRPO: Sample-Routed Policy Optimization (arXiv:2604.02288).
 
-    Routes each rollout to the supervision signal best suited to its learning
-    status: correct rollouts go through GRPO's PPO-clip surrogate (reward-aligned,
-    sequence-level advantage), while incorrect rollouts with available teacher
-    information go through SDPO's logit-level distillation, reweighted token-wise
-    by teacher entropy (Dynamic-Weighted SDPO).
-
-    The combined objective follows Eq. (Lfinal) of the paper:
-        L = (Σ_{i,t} z^GRPO_i ℓ^GRPO_{i,t} + Σ_{i,t} z^SDPO_i ℓ^DW-SDPO_{i,t})
-            / (Σ_{i,t} z^GRPO_i + Σ_{i,t} z^SDPO_i)
-    where z^SDPO_i = (1 - c_i) m_i and z^GRPO_i = 1 - z^SDPO_i.
-
-    The correctness flag c_i is read from the per-rollout sign of the GRPO
-    advantage (a positive group-normalized advantage corresponds to a higher
-    reward than the group mean, equivalent to "correct" in the binary-reward
-    regime when the group is mixed). Teacher availability m_i is taken to be 1
-    whenever teacher_log_probs are present.
-
-    Hyperparameters (read from config.policy_loss):
-        srpo_beta:           dynamic-weighting temperature β (default 1.0).
-        alpha:               JSD mixing coefficient for the SDPO branch
-                             (0 = forward KL, 1 = reverse KL, 0<α<1 = JSD).
-        full_logit_distill:  use full-vocab JSD (True) or k1 reverse-KL (False).
-        top_k_distill:       sparse top-k support size for the JSD branch.
-        is_clip:             upper clamp on the SDPO IS ratio (default 2.0).
-    """
     teacher_lp = kwargs.get("teacher_log_probs")
     teacher_ent = kwargs.get("teacher_entropy")
     assert teacher_lp is not None, (
