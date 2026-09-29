@@ -125,10 +125,7 @@ def get_adv_estimator_fn(name_or_enum):
 
 
 class AdaptiveKLController:
-    """
-    Adaptive KL controller described in the paper:
-    https://arxiv.org/pdf/1909.08593.pdf
-    """
+
 
     def __init__(self, init_kl_coef, target_kl, horizon):
         self.value = init_kl_coef
@@ -216,7 +213,6 @@ def compute_gae_advantage_return(
     return advantages, returns
 
 
-# NOTE(sgm): this implementation only consider outcome supervision, where the reward is a scalar.
 @register_adv_est(AdvantageEstimator.GRPO)  # or simply: @register_adv_est("grpo")
 def compute_grpo_outcome_advantage(
     token_level_rewards: torch.Tensor,
