@@ -1,11 +1,11 @@
-export CUDA_VISIBLE_DEVICES=0,1
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 unset WANDB_DISABLED
 export WANDB_MODE=disabled
 
 accelerate launch \
     --config_file  \
-    --num_processes 2 \
+    --num_processes 4 \
     --gradient_accumulation_steps 2 \
     --main_process_port 12949 \
     /opsd_train.py \
