@@ -60,13 +60,7 @@ def get_policy_loss_fn(name):
 
 
 class AdvantageEstimator(str, Enum):
-    """Using an enumeration class to avoid spelling errors in adv_estimator.
 
-    Note(haibin.lin): this enum class is immutable after creation. Extending this
-    enum for new estimators may not be necessary since users can always just call
-    `verl.trainer.ppo.core_algos.register` with string name for a custom advantage
-    estimator instead.
-    """
 
     GAE = "gae"
     GRPO = "grpo"
@@ -221,34 +215,7 @@ def compute_grpo_outcome_advantage(
     epsilon: float = 1e-6,
     norm_adv_by_std_in_grpo: bool = True,
     config: Optional[AlgoConfig] = None) -> tuple[torch.Tensor, torch.Tensor]:
-    """
-    Compute advantage for GRPO, operating only on Outcome reward
-    (with only one scalar reward for each response).
 
-    Args:
-        token_level_rewards: `(torch.Tensor)`
-            shape is (bs, response_length)
-        response_mask: `(torch.Tensor)`
-            shape is (bs, response_length)
-        index: `(np.ndarray)`
-            index array for grouping
-        epsilon: `(float)`
-            small value to avoid division by zero
-        norm_adv_by_std_in_grpo: `(bool)`
-            whether to scale the GRPO advantage
-        config: `(Optional[AlgoConfig])`
-            algorithm configuration object
-
-    Note:
-        If norm_adv_by_std_in_grpo is True, the advantage is scaled by the std, as in the original GRPO.
-        If False, the advantage is not scaled, as in Dr.GRPO (https://arxiv.org/abs/2503.20783).
-
-    Returns:
-        advantages: `(torch.Tensor)`
-            shape is (bs, response_length)
-        Returns: `(torch.Tensor)`
-            shape is (bs, response_length)
-    """
     scores = token_level_rewards.sum(dim=-1)
 
     id2score = defaultdict(list)
