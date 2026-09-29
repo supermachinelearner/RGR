@@ -354,9 +354,7 @@ if __name__ == "__main__":
         raise TypeError(f"Unsupported dtype type: {type(value)}")
 
 
-    # ============================================================
-    # 排障模式：强制 FP32 + eager
-    # ============================================================
+
     FORCE_FP32_DEBUG = False
 
     if FORCE_FP32_DEBUG:
