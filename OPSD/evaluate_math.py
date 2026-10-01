@@ -234,16 +234,16 @@ def evaluate_math500(
     print(f"Loading {dataset_name.upper()} dataset...")
     # Load dataset based on dataset_name
     if dataset_name.lower() == "math500":
-        dataset = load_dataset("HuggingFaceH4/MATH-500", split="test")
-        print(f"Loaded HuggingFaceH4/MATH-500 dataset with {len(dataset)} problems")
+        dataset = load_dataset("MATH-500", split="test")
+        print(f"MATH-500 dataset with {len(dataset)} problems")
     elif dataset_name.lower() == "amo-bench":
-        dataset = load_dataset("meituan-longcat/AMO-Bench", split="test")
-        print(f"Loaded meituan-longcat/AMO-Bench dataset with {len(dataset)} problems")
+        dataset = load_dataset("AMO-Bench", split="test")
+        print(f"AMO-Bench dataset with {len(dataset)} problems")
     elif dataset_name.lower() == "minerva":
-        dataset = load_dataset("math-ai/minervamath", split="test")
+        dataset = load_dataset("minervamath", split="test")
         print(f"Loaded minerva dataset with {len(dataset)} problems")
     elif dataset_name.lower() == "amc23":
-        dataset = load_dataset("math-ai/amc23", split="test")
+        dataset = load_dataset("amc23", split="test")
         print(f"Loaded amc 23 dataset with {len(dataset)} problems")
     elif dataset_name.lower() == "aime24":
         dataset = load_dataset(
