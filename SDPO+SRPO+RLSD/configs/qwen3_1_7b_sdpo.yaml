@@ -5,7 +5,7 @@ method: sdpo
 
 
 
-model_path: /root/autodl-tmp/models/Qwen3-1.7B
+model_path: 
 
 n_gpus_per_node: 2
 
