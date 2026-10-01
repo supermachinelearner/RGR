@@ -292,12 +292,7 @@ def load_vllm_model(
 
 
 def load_local_dataset(dataset_path: str):
-    """
-    保留第二段的本地数据加载方式：
-      - Hugging Face save_to_disk directory
-      - parquet file/glob
-      - json/jsonl file/glob
-    """
+    
     path_str = os.path.expanduser(dataset_path)
     path = Path(path_str)
 
@@ -356,25 +351,25 @@ def load_evaluation_dataset(
 
     if dataset_name == "math500":
         dataset = load_dataset(
-            "HuggingFaceH4/MATH-500",
+            "MATH-500",
             split="test",
         )
 
     elif dataset_name == "amo-bench":
         dataset = load_dataset(
-            "meituan-longcat/AMO-Bench",
+            "AMO-Bench",
             split="test",
         )
 
     elif dataset_name == "minerva":
         dataset = load_dataset(
-            "math-ai/minervamath",
+            "minervamath",
             split="test",
         )
 
     elif dataset_name == "amc23":
         dataset = load_dataset(
-            "math-ai/amc23",
+            "amc23",
             split="test",
         )
 
