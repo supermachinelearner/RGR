@@ -42,7 +42,7 @@ Configure the required paths in the corresponding YAML file, and then run one of
 
 ```bash
 bash scripts/_run_verl.sh \
-  "$(pwd)/configs/math_deepmath/qwen3_1_7b_sdpo.yaml" \
+  "$(pwd)/configs/qwen3_1_7b_sdpo.yaml" \
   2>&1 | tee sdpo_launcher.log
 ```
 
@@ -50,7 +50,7 @@ bash scripts/_run_verl.sh \
 
 ```bash
 bash scripts/_run_verl.sh \
-  "$(pwd)/configs/math_deepmath/qwen3_1_7b_srpo.yaml" \
+  "$(pwd)/configs/qwen3_1_7b_srpo.yaml" \
   2>&1 | tee srpo_launcher.log
 ```
 
@@ -58,7 +58,7 @@ bash scripts/_run_verl.sh \
 
 ```bash
 bash scripts/_run_verl.sh \
-  "$(pwd)/configs/math_deepmath/qwen3_1_7b_rlsd.yaml" \
+  "$(pwd)/configs/qwen3_1_7b_rlsd.yaml" \
   2>&1 | tee rlsd_launcher.log
 ```
 
