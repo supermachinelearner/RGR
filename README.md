@@ -15,6 +15,9 @@ We evaluate our model on the following mathematical reasoning benchmarks:
 - **AIME 2025:** [`MathArena/aime_2025`](https://huggingface.co/datasets/MathArena/aime_2025)
 - **HMMT February 2025:** [`MathArena/hmmt_feb_2025`](https://huggingface.co/datasets/MathArena/hmmt_feb_2025)
 
+## Model Preparation
+
+Download the Qwen3-1.7B and Qwen3-4B models from [ModelScope](https://modelscope.cn/).
 
 ## Running Experiments
 
