@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 
@@ -34,7 +33,7 @@ TEST_REQUIRES = ["pytest", "pre-commit", "py-spy", "pytest-asyncio", "pytest-rer
 PRIME_REQUIRES = ["pyext"]
 GEO_REQUIRES = ["mathruler", "torchvision", "qwen_vl_utils"]
 GPU_REQUIRES = ["liger-kernel", "flash-attn"]
-MATH_REQUIRES = ["math-verify"]  
+MATH_REQUIRES = ["math-verify"]  # Add math-verify as an optional dependency
 VLLM_REQUIRES = ["tensordict>=0.8.0,<=0.10.0,!=0.9.0", "vllm>=0.8.5,<=0.12.0"]
 TRTLLM_REQUIRES = ["tensorrt-llm>=1.2.0rc6"]
 SGLANG_REQUIRES = [
@@ -62,13 +61,16 @@ extras_require = {
 
 
 this_directory = Path(__file__).parent
-long_description = ""
+long_description =""
 
 setup(
     name="verl",
     version=__version__,
     package_dir={"": "."},
     packages=find_packages(where="."),
+    url="https://github.com/volcengine/verl",
+    license="Apache 2.0",
+    author="Bytedance - Seed - MLSys",
     description="verl: Volcano Engine Reinforcement Learning for LLM",
     install_requires=install_requires,
     extras_require=extras_require,
