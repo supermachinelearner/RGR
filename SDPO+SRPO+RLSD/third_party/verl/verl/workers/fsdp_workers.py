@@ -249,7 +249,7 @@ class ActorRolloutRefWorker(Worker, DistProfilerExtension):
                 logger.info(
                     f"QAT enabled: mode={self.qat_config.mode}, config_path={self.qat_config.quantization_config_path}"
                 )
-        except (AttributeError, KeyError, ConfigAttributeError):AT
+        except (AttributeError, KeyError, ConfigAttributeError):
             self._qat_enabled = False
             self.qat_config = None
 
